@@ -13,6 +13,10 @@ exports.seed = function(knex) {
         {country_name: "Jordan", visa_required: true},
         {country_name: "Lebanon", visa_required: true},
         {country_name: "Qatar", visa_required: false},
+        {country_name: "Moroco", visa_required: true},
+        {country_name: "Kenya", visa_required: true},
+        {country_name: "Brazil", visa_required: false},
+        {country_name: "Paraguay", visa_required: false},
       ]);
     });
 };
