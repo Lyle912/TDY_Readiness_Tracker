@@ -4,40 +4,42 @@ const knex = require("../db/knexConfig");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-
   var countryId = knex
-    .select("vaccine_id")
+    .select("id")
     .from("countries")
-    .join("vaccine_country", "countries.id", "vaccine_country.country_id")
-    .where("country_name", "Bahrain");
+    .where("country_name", "UAE");
 
-  // var vaccinesNeeded = knex
-  //   .select("vaccine_id")
-  //   .from("vaccine_country")
-  //   .whereIn("country_id", countryId);
+  var vaccinesNeeded = knex
+    .select("vaccine_id")
+    .from("vaccine_country")
+    .whereIn("country_id", countryId);
 
   var vaccinesNeededCount = knex
     .count("vaccine_id")
-    .from("countries")
-    .join("vaccine_country", "countries.id", "vaccine_country.country_id")
-    .where("country_name", "Bahrain");
+    .from("vaccine_country")
+    .whereIn("country_id", countryId);
 
   var memberWithVaccine = knex
     .select("member_id")
     .count("member_id")
     .from("member_vaccine")
-    .whereIn("vaccine_id", countryId)
+    .whereIn("vaccine_id", vaccinesNeeded)
     .groupBy("member_id");
 
   var countStuff = knex
     .select("member_id")
     .from(memberWithVaccine.as("m"))
-    .where("m.count", vaccinesNeededCount);
+    .where("m.count", vaccinesNeededCount)
 
   var getNames = knex
     .select(knex.raw("first_name || ' ' ||last_name as name"))
-    .from("members")
-    .whereIn("id", countStuff)
+    //.select('*')
+    .from('members')
+    .whereIn('members.id', countStuff)
+    // .innerJoin("visas", "members.id", "visas.member_id")
+    // .innerJoin("countries", "visas.country_id", "countries.id")
+    // .where("country_name", "UAE")
+
 
     .then((data) => res.json(data));
 });
@@ -46,9 +48,9 @@ router.get("/", function (req, res, next) {
 // var query = knex("members");
 // if (2 > 1) {
 //   query
-//     .innerJoin("visas", "members.id", "visas.member_id")
-//     .innerJoin("countries", "visas.country_id", "countries.id")
-//     .where("country_name", "UAE")
+    // .innerJoin("visas", "members.id", "visas.member_id")
+    // .innerJoin("countries", "visas.country_id", "countries.id")
+    // .where("country_name", "UAE")
 // }
 // if(3>2){
 //   query

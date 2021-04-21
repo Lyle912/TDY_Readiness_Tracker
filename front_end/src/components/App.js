@@ -1,5 +1,5 @@
-import '../styles/App.css';
-import { BrowserRouter } from "react-router-dom";
+import "../styles/App.css";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import Header from "./Header";
 import SearchPage from "./SearchPage";
@@ -8,22 +8,15 @@ import FrontPage from "./FrontPage";
 
 export default function App() {
   return (
-    <div className="app">
-      <BrowserRouter>
+    <Router>
+      <div className="app">
+      <Route render={({ location }) =>["/"].includes(location.pathname) ? null : <Header/>}/>
         <Switch>
-          <Route path="/search">
-            <Header />
-            <SearchPage />
-          </Route>
-          <Route path="/form">
-            <Header />
-            <FormPage />
-          </Route>
-          <Route path="/">
-            <FrontPage />
-          </Route>
+          <Route path="/search" component={SearchPage} />
+          <Route path="/form" component={FormPage} />
+          <Route exact path="/" component={FrontPage} />
         </Switch>
-      </BrowserRouter>
-    </div>
+      </div>
+    </Router>
   );
 }
