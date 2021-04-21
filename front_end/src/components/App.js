@@ -12,9 +12,9 @@ export default function App() {
       <div className="app">
       <Route render={({ location }) =>["/"].includes(location.pathname) ? null : <Header/>}/>
         <Switch>
+          <Route exact path="/" component={FrontPage} />
           <Route path="/search" component={SearchPage} />
           <Route path="/form" component={FormPage} />
-          <Route exact path="/" component={FrontPage} />
         </Switch>
       </div>
     </Router>

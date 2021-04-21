@@ -1,78 +1,61 @@
 const express = require("express");
 const router = express.Router();
+const cors = require('cors')
 const knex = require("../db/knexConfig");
 
+router.use(cors())
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  var countryId = knex
+
+let country = req.query.country
+
+  var getCountryId = knex
     .select("id")
     .from("countries")
-    .where("country_name", "UAE");
+    .where("country_name", country);
 
-  var vaccinesNeeded = knex
+  var getVaccinesNeeded = knex
     .select("vaccine_id")
     .from("vaccine_country")
-    .whereIn("country_id", countryId);
+    .whereIn("country_id", getCountryId);
 
-  var vaccinesNeededCount = knex
+  var getVaccinesNeededCount = knex
     .count("vaccine_id")
     .from("vaccine_country")
-    .whereIn("country_id", countryId);
+    .whereIn("country_id", getCountryId);
 
-  var memberWithVaccine = knex
+  var getMembersWithVaccine = knex
     .select("member_id")
     .count("member_id")
     .from("member_vaccine")
-    .whereIn("vaccine_id", vaccinesNeeded)
+    .whereIn("vaccine_id", getVaccinesNeeded)
     .groupBy("member_id");
 
-  var countStuff = knex
+  var compareCounts = knex
     .select("member_id")
-    .from(memberWithVaccine.as("m"))
-    .where("m.count", vaccinesNeededCount)
+    .from(getMembersWithVaccine.as("m"))
+    .where("m.count", getVaccinesNeededCount);
 
   var getNames = knex
-    .select(knex.raw("first_name || ' ' ||last_name as name"))
-    //.select('*')
-    .from('members')
-    .whereIn('members.id', countStuff)
-    // .innerJoin("visas", "members.id", "visas.member_id")
-    // .innerJoin("countries", "visas.country_id", "countries.id")
-    // .where("country_name", "UAE")
-
+    //.select(knex.raw("first_name || ' ' ||last_name as name"))
+    .select('*')
+    .from("members")
+    .whereIn("members.id", compareCounts)
 
     .then((data) => res.json(data));
 });
 
-//res.send('respond with a resource');
-// var query = knex("members");
-// if (2 > 1) {
-//   query
-    // .innerJoin("visas", "members.id", "visas.member_id")
-    // .innerJoin("countries", "visas.country_id", "countries.id")
-    // .where("country_name", "UAE")
-// }
-// if(3>2){
-//   query
-//     .innerJoin("member_vaccine", "members.id", "member_vaccine.member_id" )
-//     .innerJoin("vaccines", "vaccine_id", "vaccines.id")
-//     .where("last_name", "Rubin")
-//     .select("vaccine_name", "expiration")
+//.select('*')
+// .innerJoin("visas", "members.id", "visas.member_id")
+// .innerJoin("countries", "visas.country_id", "countries.id")
+// .where("country_name", "UAE")
 
-//SELECT a.name FROM airlines a LEFT OUTER JOIN airlines_destinations ad
-//ON (a.id=ad.airlineId) AND ad destinationId=4 WHERE ad.destinationId IS NULL;
-
-// }
-
-//.innerJoin("")
-
-// .where("age", ">", 30)
+// .where("age", ">", 21)
 // .andWhere("rank", "O3")
 // query.then((data) => res.json(data));
 // });
 
 router.post("/", (req, res, next) => {
-  const newMember = req.body;
   const {
     first_name,
     last_name,
@@ -82,10 +65,41 @@ router.post("/", (req, res, next) => {
     cac_expiration,
     gtc_expiration,
     dl_expiration,
+    vaccines,
   } = req.body;
-  knex("members").then(res.send("New User Added"));
-  // .insert(newMember)
-  //console.log(first_name, last_name)
+
+  const newMember = {
+    first_name,
+    last_name,
+    rank,
+    mos,
+    age,
+    cac_expiration,
+    gtc_expiration,
+    dl_expiration,
+  };
+
+  knex("members")
+    .insert(newMember)
+    .returning("id")
+    .then((memberId) => {
+      knex
+        .select("*")
+        .from("vaccines")
+        .whereIn("vaccine_name", vaccines)
+        .then((vaccines) => {
+          vaccines.forEach((vaccine) => {
+            knex("member_vaccine")
+              .insert({
+                member_id: memberId[0],
+                vaccine_id: vaccine.id,
+                expiration: "20300101",
+              })
+              .then();
+          });
+        });
+    })
+    .then(res.status(201).send("New Member Added"));
 });
 
 module.exports = router;
