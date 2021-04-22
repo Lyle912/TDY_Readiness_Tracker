@@ -1,12 +1,16 @@
 import React, { useReducer, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+
 import countryList from "../utility/country_list";
 import enlistedRankList from "../utility/enlisted_rank_list";
 import officerRankList from "../utility/officer_rank_list";
 import warrantRankList from "../utility/warrant_rank_list";
+
+import "../styles/SearchQuery.css";
 
 export default function SearchQuery() {
   const [state, dispatch] = useReducer(reducer, {
@@ -18,7 +22,7 @@ export default function SearchQuery() {
     licenseExpired: false,
     open: false,
   });
-
+  var history = useHistory();
   function reducer(state, action) {
     const { type } = action;
     switch (type) {
@@ -70,17 +74,19 @@ export default function SearchQuery() {
 
   function submitForm(e) {
     e.preventDefault();
-    fetch(
-      `http://localhost:5000/members?country=${state.desiredCountry}&rank=${state.desiredRank}&rental=${state.canDrive}&cac=${state.cacExpired}&dl=${state.licenseExpired}&gtc=${state.gtcExpired}`,
-      { method: "GET" }
-    )
-      .then((res) => res.json())
-      .then((jsonRes) => console.log(jsonRes));
+
+    history.push(
+      `/search/country=${state.desiredCountry}&rank=${state.desiredRank}&rental=${state.canDrive}&cac=${state.cacExpired}&dl=${state.licenseExpired}&gtc=${state.gtcExpired}`
+    );
   }
 
   return (
-    <form onSubmit={submitForm}>
-      <FormControl style={{ margin: "theme.spacing(1)", minWidth: 120 }}>
+    <form onSubmit={submitForm} className="search-box">
+      <h1 className="search-heading">Search</h1>
+      <FormControl
+        style={{ margin: "theme.spacing(1)", minWidth: 120 }}
+        className="country-select"
+      >
         <InputLabel id="demo-controlled-open-select-label">Country</InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
@@ -99,49 +105,49 @@ export default function SearchQuery() {
         </Select>
       </FormControl>
 
-      <section name="ranks">
+      <section name="ranks" className="rank-select">
         <label for="ranks">Ranks:</label>
-        <section name="enlisted">
+        <section name="enlisted" className="enlisted-ranks">
           {enlistedRankList.map((rank) => (
-            <span>
+            <span className="rank">
               <input
                 type="checkbox"
                 id={rank}
                 name={rank}
                 onChange={handleRankChange}
               />
-              <label for={rank}>{rank}</label>
+              <label for={rank}> {rank}</label>
             </span>
           ))}
         </section>
-        <section name="warrant">
+        <section name="warrant" className="warrant-ranks">
           {warrantRankList.map((rank) => (
-            <span>
+            <span className="rank">
               <input
                 type="checkbox"
                 id={rank}
                 name={rank}
                 onChange={handleRankChange}
               />
-              <label for={rank}>{rank}</label>
+              <label for={rank}> {rank}</label>
             </span>
           ))}
         </section>
-        <section name="officer">
+        <section name="officer" className="officer-ranks">
           {officerRankList.map((rank) => (
-            <span>
+            <span className="rank">
               <input
                 type="checkbox"
                 id={rank}
                 name={rank}
                 onChange={handleRankChange}
               />
-              <label for={rank}>{rank}</label>
+              <label for={rank}> {rank}</label>
             </span>
           ))}
         </section>
       </section>
-      <section name="rentalCar">
+      <section name="rentalCar" className="rental-select">
         <label for="rental">Old Enough for Rental Car:</label>
         <input
           type="checkbox"
@@ -150,7 +156,7 @@ export default function SearchQuery() {
           onChange={() => dispatch({ type: "updateRentalEligibility" })}
         />
       </section>
-      <section name="expirations">
+      <section name="expirations" className="expiration-select">
         <label for="expirations">Cannot be Expired:</label>
         <input
           type="checkbox"
@@ -174,7 +180,7 @@ export default function SearchQuery() {
         />
         <label for="expiredGTC">Government Travel Card</label>
       </section>
-      <input type="submit" />
+      <input type="submit" className="submit-button" />
     </form>
   );
 }

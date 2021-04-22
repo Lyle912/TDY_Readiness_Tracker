@@ -21,7 +21,6 @@ export default function MultiStepForm ({ images }){
   const [formData, setForm] = useForm({});
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
-
   const props = { formData, setForm, navigation };
 
   switch (id) {

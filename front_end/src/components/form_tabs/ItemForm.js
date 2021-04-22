@@ -1,8 +1,9 @@
 import React from "react";
+import "../../styles/MultiStepForm.css";
 
 export default function ItemForm ({ label, children, type = "text", ...otherProps }){
 return (
-  <div>
+  <div className="item">
     {type === "text" ? (
       <>
         <label>{label}</label>

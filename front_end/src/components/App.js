@@ -10,12 +10,18 @@ export default function App() {
   return (
     <Router>
       <div className="app">
-      <Route render={({ location }) =>["/"].includes(location.pathname) ? null : <Header/>}/>
-        <Switch>
-          <Route exact path="/" component={FrontPage} />
-          <Route path="/search" component={SearchPage} />
-          <Route path="/form" component={FormPage} />
-        </Switch>
+        <div className="grid-container">
+          <div className="header">
+            <Route render={({ location }) =>["/"].includes(location.pathname) ? null : <Header/>}/>
+          </div>
+          <div className="main">
+            <Switch>
+              <Route exact path="/" component={FrontPage} />
+              <Route path="/search" component={SearchPage} />
+              <Route path="/form" component={FormPage} />
+            </Switch>
+          </div>
+        </div>
       </div>
     </Router>
   );

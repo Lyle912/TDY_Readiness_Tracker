@@ -1,4 +1,5 @@
 import React from "react";
+
 export default function Submit ({ navigation }){
   const { go } = navigation;
   return (

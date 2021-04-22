@@ -1,11 +1,13 @@
-import "../styles/SearchPage.css";
 import SearchQuery from "./SearchQuery"
+import SearchResults from "./SearchResults"
+
+import "../styles/SearchPage.css";
 
 export default function SearchPage() {
   return (
     <div className="search-page">
-      <h1>this is the search page</h1>
       <SearchQuery/>
+      <SearchResults/>
     </div>
   );
 }

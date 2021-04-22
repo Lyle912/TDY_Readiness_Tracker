@@ -3,19 +3,21 @@ import React from "react";
 import ItemForm from "./ItemForm";
 import RankDrop from "./RankDrop";
 
-export default function Names ({ setForm, formData, navigation }){
-  const { firstName, lastName, age, rank } = formData;
+import "../../styles/MultiStepForm.css"
 
+export default function Names ({ setForm, formData, navigation }){
+  const { firstName, lastName, age, mos, rank } = formData;
   const { next } = navigation;
 
   return (
+    <div>
     <div className="form">
-      
       <ItemForm
         label="First Name"
         name="firstName"
         value={firstName}
         onChange={setForm}
+        required
       />
       <ItemForm
         label="Last Name"
@@ -29,15 +31,21 @@ export default function Names ({ setForm, formData, navigation }){
         value={age}
         onChange={setForm}
       />
+      <ItemForm
+      label="MOS"
+      name="mos"
+      value={mos}
+      onChange={setForm}
+      />
       <RankDrop
         label="Rank"
         name="rank"
         value={rank}
         onChange={setForm}
       />
-
-      <div>
-        <button onClick={next}>Next</button>
+      </div>
+      <div >
+        <button className="button" onClick={next}>Next</button>
       </div>
     </div>
   );

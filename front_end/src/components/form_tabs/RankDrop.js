@@ -6,9 +6,13 @@ const ranks = [
   ["E-3", 'E-3'],["E-4", 'E-4'],['E-5', 'E-5'],
   ["E-6", 'E-6'], ["E-7", 'E-7'],
   ['E-8', 'E-8'], ['E-9', 'E-9'],
+  ['W-1', 'W-1'], ['W-2', 'W-2'],
+  ['W-3', 'W-3'], ['W-4', 'W-4'],
   ['O-1', 'O-1'], ['O-2', 'O-2'],
   ['O-3', 'O-3'], ['O-4', 'O-4'],
-  ['O-5', 'O-5']
+  ['O-5', 'O-5'], ['O-6', 'O-6'],
+  ['O-7', 'O-7'], ['O-8', 'O-8'],
+  ['O-9', 'O-9'],
 ]
 
 export default function RankDrop ({ label, ...others }){
@@ -16,8 +20,8 @@ export default function RankDrop ({ label, ...others }){
   <>
     <label>{label}</label>
       <select {...others}>
-        {ranks.map(([value, name]) => (
-          <option value={value}>{name}</option>
+        {ranks.map(([value, name], k) => (
+          <option value={value} key={k}>{name}</option>
       ))}
     </select>
   </>

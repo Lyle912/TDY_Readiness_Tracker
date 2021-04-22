@@ -1,0 +1,67 @@
+.search-box{
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 15% 20% 80% 10% 15% 15% 10%;
+  gap: 5px 5px;
+}
+
+.search-heading{
+  grid-row-start: 1;
+  grid-column-start: 1;
+}
+
+.country-select{
+  grid-row-start: 2;
+  grid-column-start: 1;
+}
+
+.rank-select{
+  grid-row-start: 3;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 9fr;
+  gap: 0px 0px;
+}
+
+.enlisted-ranks{
+  grid-row-start: 2;
+  grid-column-start: 1;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 0px 10px;
+}
+.warrant-ranks{
+  grid-row-start: 2;
+  grid-column-start: 2;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 0px 10px;
+}
+.officer-ranks{
+  grid-row-start: 2;
+  grid-column-start: 3;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 0px 10px;
+}
+
+.rental-select{
+  grid-row-start: 4;
+  grid-column-start: 1;
+}
+
+.expiration-select{
+  grid-row-start: 5;
+  grid-column-start: 1;
+}
+
+.submit-button{
+  grid-row-start: 7;
+  grid-column-start: 1;
+}
