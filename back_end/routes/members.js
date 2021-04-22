@@ -1,13 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const cors = require('cors')
+const cors = require("cors");
 const knex = require("../db/knexConfig");
 
-router.use(cors())
+router.use(cors());
 /* GET users listing. */
+function isCurrent(date) {
+  return new Date(date).getTime() > new Date().getTime();
+}
 router.get("/", function (req, res, next) {
-
-let country = req.query.country
+  let country = req.query.country;
+  let rank = req.query.rank;
+  let rental = req.query.rental==="true";
+  let cac = req.query.cac==="true";
+  let license = req.query.dl==="true";
+  let gtc = req.query.gtc==="true";
+  console.log(rental)
 
   var getCountryId = knex
     .select("id")
@@ -38,22 +46,20 @@ let country = req.query.country
 
   var getNames = knex
     //.select(knex.raw("first_name || ' ' ||last_name as name"))
-    .select('*')
+    .select("*")
     .from("members")
     .whereIn("members.id", compareCounts)
 
+    .then((resultArray) => {
+      if (rank) resultArray = resultArray.filter((person) => rank.includes(person.rank));
+      if (rental) resultArray = resultArray.filter(person => person.age >= 25 && isCurrent(person.dl_expiration))
+      if (cac) resultArray = resultArray.filter(person => isCurrent(person.cac_expiration))
+      if (license) resultArray = resultArray.filter(person => isCurrent(person.dl_expiration))
+      if (gtc) resultArray = resultArray.filter(person => isCurrent(person.gtc_expiration))
+      return resultArray;
+    })
     .then((data) => res.json(data));
 });
-
-//.select('*')
-// .innerJoin("visas", "members.id", "visas.member_id")
-// .innerJoin("countries", "visas.country_id", "countries.id")
-// .where("country_name", "UAE")
-
-// .where("age", ">", 21)
-// .andWhere("rank", "O3")
-// query.then((data) => res.json(data));
-// });
 
 router.post("/", (req, res, next) => {
   const {
