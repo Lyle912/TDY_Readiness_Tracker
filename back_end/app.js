@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var membersRouter = require('./routes/members');
+var fetchVaccinesRouter = require('./routes/fetchVaccines');
 
 var app = express();
 
@@ -16,5 +17,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/members', membersRouter);
+app.use('/fetchVaccines', fetchVaccinesRouter);
 
 module.exports = app;
