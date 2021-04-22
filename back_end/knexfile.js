@@ -5,7 +5,7 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      database: 'tdy_readiness',
+      database: 'tdy_readiness_tracker',
       user:     'postgres',
       password: 'docker'
     },

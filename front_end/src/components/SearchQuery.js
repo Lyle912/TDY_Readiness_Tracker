@@ -148,7 +148,7 @@ export default function SearchQuery() {
         </section>
       </section>
       <section name="rentalCar" className="rental-select">
-        <label for="rental">Old Enough for Rental Car:</label>
+        <label for="rental">Rental Car:</label>
         <input
           type="checkbox"
           id="rental"
@@ -157,28 +157,34 @@ export default function SearchQuery() {
         />
       </section>
       <section name="expirations" className="expiration-select">
-        <label for="expirations">Cannot be Expired:</label>
-        <input
-          type="checkbox"
-          id="expiredCAC"
-          name="expiredCAC"
-          onChange={() => dispatch({ type: "updateCACStatus" })}
-        />
-        <label for="expiredCAC">CAC</label>
-        <input
-          type="checkbox"
-          id="expiredDL"
-          name="expiredDL"
-          onChange={() => dispatch({ type: "updateDLStatus" })}
-        />
-        <label for="expiredDL">Driver's License</label>
-        <input
-          type="checkbox"
-          id="expiredGTC"
-          name="expiredGTC"
-          onChange={() => dispatch({ type: "updateGTCStatus" })}
-        />
-        <label for="expiredGTC">Government Travel Card</label>
+        <label for="expirations">Cannot be Expired: </label>
+        <div className="expiration-item">
+          <input
+            type="checkbox"
+            id="expiredCAC"
+            name="expiredCAC"
+            onChange={() => dispatch({ type: "updateCACStatus" })}
+          />
+          <label for="expiredCAC">CAC</label>
+        </div>
+        <div className="expiration-item">
+          <input
+            type="checkbox"
+            id="expiredDL"
+            name="expiredDL"
+            onChange={() => dispatch({ type: "updateDLStatus" })}
+          />
+          <label for="expiredDL">Driver's License</label>
+        </div>
+        <div className="expiration-item">
+          <input
+            type="checkbox"
+            id="expiredGTC"
+            name="expiredGTC"
+            onChange={() => dispatch({ type: "updateGTCStatus" })}
+          />
+          <label for="expiredGTC">Government Travel Card</label>
+        </div>
       </section>
       <input type="submit" className="submit-button" />
     </form>

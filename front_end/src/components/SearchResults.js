@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "../styles/SearchResults.css";
 import SearchResultItem from "./SearchResultItem";
 
 export default function SearchResults() {
@@ -7,13 +7,13 @@ export default function SearchResults() {
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/members?${url}`, { method: "GET" })
+    fetch(`http://localhost:5002/members?${url}`, { method: "GET" })
       .then((res) => res.json())
       .then((jsonRes) => setMembers(jsonRes));
   }, [url]);
 
   return (
-    <div>
+    <div className="search-results">
       {members.map((member) => (
         <div key={member.id}>
           <SearchResultItem member={member}/>

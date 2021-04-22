@@ -7,8 +7,6 @@ import Vaccine from "./Vaccine";
 import Review from "./Review";
 import Submit from "./Submit";
 
-import "../../styles/MultiStepForm.css";
-
 const steps = [
   { id: "names" },
   { id: "expiration" },

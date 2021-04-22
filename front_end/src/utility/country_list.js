@@ -1,15 +1,23 @@
- const countryList = [
+const countryList = [
   "Bahrain",
   "Brazil",
+  "Colombia",
+  "France",
+  "Germany",
+  "Italy",
+  "Japan",
   "Jordan",
   "Kenya",
   "Kuwait",
-  "Moroco",
+  "Libya",
+  "Morocco",
   "Oman",
   "Paraguay",
   "Qatar",
   "Saudi Arabia",
-  "UAE"
+  "South Korea",
+  "Thailand",
+  "UAE",
 ];
 
-export default countryList
+export default countryList;

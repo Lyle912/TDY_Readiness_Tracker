@@ -49,6 +49,7 @@ router.get("/", function (req, res, next) {
       .select("*")
       .from("members")
       .whereIn("members.id", compareCounts)
+      .orderBy("members.id", "asc")
 
       .then((resultArray) => {
         if (rank)
@@ -78,6 +79,7 @@ router.get("/", function (req, res, next) {
 });
 
 router.post("/", (req, res, next) => {
+  console.log(req.body)
   const {
     first_name,
     last_name,

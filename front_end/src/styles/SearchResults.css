@@ -13,7 +13,7 @@
   border-bottom: 1px black dotted;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 7fr 3fr;
 }
 
 .member-details-vaccines {
@@ -34,7 +34,15 @@
 }
 
 .divider{
-    width:10px;
-    height:auto;
-    display:inline-block;
+  width:10px;
+  height:auto;
+  display:inline-block;
 }
+
+
+.search-results{
+  background-color:lightgoldenrodyellow
+}
+
+
+

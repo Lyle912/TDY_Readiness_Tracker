@@ -5,12 +5,14 @@
 
 .app {
   text-align: center;
+  background-color: steelblue;
+  /* background-image: url("../images/background.jpg"); */
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 15vh 80vh;
-  gap: 0px 0px;
+  grid-template-rows: 15vh 100em;
+  gap: 25px 0px;
 }
 

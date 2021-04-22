@@ -8,7 +8,7 @@
      "Influenza",
      "Japanese Encephalitis",
      "M-M-R",
-     "Pnuemococcal",
+     "Pneumococcal",
      "Polio",
      "Rabies",
      "Smallpox",

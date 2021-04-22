@@ -18,8 +18,8 @@ const ranks = [
 export default function RankDrop ({ label, ...others }){
   return (
   <>
-    <label>{label}</label>
-      <select {...others}>
+    <label className='label'>{label}</label>
+      <select className='input' {...others}>
         {ranks.map(([value, name], k) => (
           <option value={value} key={k}>{name}</option>
       ))}

@@ -3,6 +3,6 @@
   grid-column-start: 1;
   display: grid;
   grid-template-columns: 15em 80%;
-  grid-template-rows: 100%;
+  grid-template-rows: 45em;
   gap: 0px 50px;
 }

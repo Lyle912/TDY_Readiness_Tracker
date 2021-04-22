@@ -3,27 +3,28 @@
   grid-column-start: 1;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 15% 20% 80% 10% 15% 15% 10%;
+  grid-template-rows: 3fr 4fr 16fr 2fr 3fr 3fr 2fr;
   gap: 5px 5px;
+  height: 45em;
+  margin-left: 30px;
+  background-color: white;
+  border: 2px solid black;
 }
 
+.expiration-select{
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
 .search-heading{
-  grid-row-start: 1;
-  grid-column-start: 1;
+  border-bottom: 1px solid black;
 }
-
-.country-select{
-  grid-row-start: 2;
-  grid-column-start: 1;
-}
-
 .rank-select{
-  grid-row-start: 3;
-  grid-column-start: 1;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 9fr;
   gap: 0px 0px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .enlisted-ranks{
@@ -33,6 +34,7 @@
   flex-flow: row wrap;
   justify-content: center;
   padding: 0px 10px;
+  border-right: 1px solid black;
 }
 .warrant-ranks{
   grid-row-start: 2;
@@ -41,6 +43,7 @@
   flex-flow: row wrap;
   justify-content: center;
   padding: 0px 10px;
+  border-right: 1px solid black;
 }
 .officer-ranks{
   grid-row-start: 2;
@@ -51,14 +54,8 @@
   padding: 0px 10px;
 }
 
-.rental-select{
-  grid-row-start: 4;
-  grid-column-start: 1;
-}
-
-.expiration-select{
-  grid-row-start: 5;
-  grid-column-start: 1;
+.expiration-item{
+  display:flex;
 }
 
 .submit-button{

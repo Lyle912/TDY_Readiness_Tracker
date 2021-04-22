@@ -31,13 +31,13 @@ export default function SearchResultItem({ member }) {
         className="member-item"
         onClick={() => {
           toggleDetails(!showDetails);
-          fetch(`http://localhost:5000/fetchVaccines/${id}`, { method: "GET" })
-          .then((res) => res.json())
-          .then((jsonRes) => setVaccines(jsonRes))
+          if (!showDetails) fetch(`http://localhost:5002/fetchVaccines/${id}`, { method: "GET" })
+            .then((res) => res.json())
+            .then((jsonRes) => setVaccines(jsonRes))
         }}
       >
         <span className="member-name"><strong>Name: </strong>{first_name} {last_name}</span>
-        <span className="member-paygrade"><strong>Paygrade: </strong>{rank}</span>
+        <span className="member-paygrade"><strong>Pay Grade: </strong>{rank}</span>
         <span className="member-jobcode"><strong>Job Code: </strong>{mos}</span>
         <span className="member-cac"> <strong>CAC: </strong>{isCurrent(cac_expiration) ? "Valid" : "Expired"}</span>
         <span className="member-dl"><strong>Driver's License: </strong>{isCurrent(dl_expiration) ? "Valid" : "Expired"}</span>
@@ -51,7 +51,7 @@ export default function SearchResultItem({ member }) {
           <span className="member-details-firstName"><strong>First Name: </strong>{first_name}</span>
           <span className="member-details-jobcode"><strong>Job Code: </strong>{mos}</span>
           <span className="member-details-dl"><strong>License Exipration: </strong>{dl_expiration.slice(0,10)}</span>
-          <span className="member-details-lastName"><strong>Last Name:</strong>{last_name}</span>
+          <span className="member-details-lastName"><strong>Last Name: </strong>{last_name}</span>
           <span className="member-details-age"><strong>Age: </strong>{age}</span>
           <span className="member-details-gtc"><strong>GTC Expiration: </strong>{gtc_expiration.slice(0,10)}</span>
           <span className="member-details-buttons">
