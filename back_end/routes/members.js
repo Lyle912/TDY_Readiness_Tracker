@@ -16,6 +16,7 @@ router.get("/", function (req, res, next) {
   let cac = req.query.cac === "true";
   let license = req.query.dl === "true";
   let gtc = req.query.gtc === "true";
+  let job = req.query.job;
   if (country) {
     var getCountryId = knex
       .select("id")
@@ -71,6 +72,10 @@ router.get("/", function (req, res, next) {
         if (gtc)
           resultArray = resultArray.filter((person) =>
             isCurrent(person.gtc_expiration)
+          );
+        if (job)
+          resultArray = resultArray.filter((person) =>
+            person.mos.toLowerCase().includes(job.toLowerCase())
           );
         return resultArray;
       })

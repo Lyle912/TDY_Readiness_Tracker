@@ -21,6 +21,7 @@ export default function SearchQuery() {
     gtcExpired: false,
     licenseExpired: false,
     open: false,
+    desiredJob: "",
   });
   var history = useHistory();
   function reducer(state, action) {
@@ -40,20 +41,12 @@ export default function SearchQuery() {
         return { ...state, open: !state.open };
       case "updateCountry":
         return { ...state, desiredCountry: action.country };
+      case "updateJob":
+        return { ...state, desiredJob: action.job };
       default:
         return state;
     }
   }
-
-  // let {
-  //   desiredRank,
-  //   desiredCountry,
-  //   canDrive,
-  //   cacExpired,
-  //   gtcExpired,
-  //   licenseExpired,
-  //   open
-  // } = state;
 
   useEffect(() => {
     console.log("Rank Array:  ", state.desiredRank);
@@ -62,6 +55,7 @@ export default function SearchQuery() {
     console.log("licenseExpired:  ", state.licenseExpired);
     console.log("gtcExpired:  ", state.gtcExpired);
     console.log("Country:  ", state.desiredCountry);
+    console.log("Job:  ", state.desiredJob);
   }, [state]);
 
   function handleRankChange(e) {
@@ -76,7 +70,7 @@ export default function SearchQuery() {
     e.preventDefault();
 
     history.push(
-      `/search/country=${state.desiredCountry}&rank=${state.desiredRank}&rental=${state.canDrive}&cac=${state.cacExpired}&dl=${state.licenseExpired}&gtc=${state.gtcExpired}`
+      `/search/country=${state.desiredCountry}&rank=${state.desiredRank}&rental=${state.canDrive}&cac=${state.cacExpired}&dl=${state.licenseExpired}&gtc=${state.gtcExpired}&job=${state.desiredJob}`
     );
   }
 
@@ -185,6 +179,15 @@ export default function SearchQuery() {
           />
           <label for="expiredGTC">Government Travel Card</label>
         </div>
+      </section>
+      <section name="job" className="job-select">
+        <label for="job">Job Code:</label>
+        <input
+          type="text"
+          id="job"
+          name="job"
+          onChange={(e) => dispatch({ type: "updateJob", job: e.target.value })}
+        />
       </section>
       <input type="submit" className="submit-button" />
     </form>
