@@ -2,7 +2,7 @@
 
 <p align="left"> <img src="https://i.imgur.com/5uszXs3.png" width="350" title="hover text"> </p>
 
-## Determine
+## Determine who is eligibile for overseas travel :airplane: :globe_with_meridians:
 
 ### `Search` :eyeglasses:
 
@@ -10,7 +10,7 @@
   <li>Click the "SEARCH MEMBERS" button</li>
   <li>Select a country destination</li>
   <li>Pick desired ranks for travelers </li>
-  <li>...rental car eligibility</li>
+  <li>Decide on rental car eligibility</li>
   <li>Filter out members with expired CACs, Driver's Livenses, and GTCs</li>
 </ul>
 
@@ -37,6 +37,7 @@ Form Page Demo ![Form Page Demo](./front_end/src/images/FormPage.gif)
 <ul>
 <li>Filter by training/certifications</li>
 <li>Add countries/change vaccines needed for each country</li>
+<li>Incorporate visas</li>
 </ul>
 
 ### `Contributors`
