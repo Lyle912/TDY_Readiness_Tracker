@@ -16,8 +16,8 @@ router.get("/", function (req, res, next) {
   let cac = req.query.cac === "true";
   let license = req.query.dl === "true";
   let gtc = req.query.gtc === "true";
-  let job = req.query.jobstr;
-  if (job) job = job.replace(/\\/g, '')
+  let job = req.query.job;
+  if (job && job.length > 0) job = job.replace(/\//g, "");
   if (country) {
     var getCountryId = knex
       .select("id")
@@ -47,7 +47,6 @@ router.get("/", function (req, res, next) {
       .where("m.count", getVaccinesNeededCount);
 
     var getNames = knex
-      //.select(knex.raw("first_name || ' ' ||last_name as name"))
       .select("*")
       .from("members")
       .whereIn("members.id", compareCounts)

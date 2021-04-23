@@ -1,0 +1,99 @@
+.front-page-button{
+  text-transform: uppercase;
+  padding: 5px 40px;
+  color: white;
+  background: #444;
+  font-weight: normal;
+  border-radius: 25px;
+  height: 7em;
+  width: 18em;
+}
+
+.front-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container{
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25vh;
+}
+
+:root{
+  background:radial-gradient(#050526 0%,black 90%) -20vw 10vh no-repeat black;
+  margin:0;
+  padding:0;
+  width:100vw;
+  position:absolute;  
+  perspective: 340px;
+  height: 100%;
+  
+}
+
+$stars: 350;         // Number of start per layer
+$depth: 300;         // Depth between star layers
+$speed: 10s;          // Number of seconds to transition between layers
+$width: 3000;        // Width of the starfield
+$height: 960;        // Height of the starfield
+
+
+.front-page {
+  
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  $box-shadow: ();
+  @for $i from 0 through $stars {
+    $box-shadow: $box-shadow, (random($width)-$width/2 + px) (random($height)-$height/2 + px) hsl(90,0,75+random(25));
+  }
+  box-shadow: $box-shadow;
+  animation: fly $speed linear infinite;
+  transform-style: preserve-3d;
+  
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    box-shadow: inherit;
+  }
+  &:before {
+    transform: translateZ(-$depth + px);
+    animation: fade1 $speed linear infinite;
+  }
+  &:after {
+    transform: translateZ(-$depth * 2 + px);
+    animation: fade2 $speed linear infinite;
+  }
+}
+
+@keyframes fly {
+  from {
+    transform: translateZ(0px);
+  }
+  to {
+    transform: translateZ($depth + px);
+  }
+}
+
+@keyframes fade1 {
+  from {
+    opacity: .5;
+  }
+  to {
+    opacity: 1;
+  }  
+}
+@keyframes fade2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: .5;
+  }  
+}

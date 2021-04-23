@@ -12,6 +12,10 @@ export default function Review({ formData, navigation }) {
     if (!data.gtc) data.gtc = new Date().toISOString().slice(0, 10);
     if (!data.dl) data.dl = new Date().toISOString().slice(0, 10);
     if(!data.rank) data.rank = "E1"
+    if(!data.firstName) data.firstName = "Airman"
+    if(!data.lastName) data.lastName = "Snuffy"
+    if(!data.age) data.age = "1"
+    if(!data.mos) data.mos = "XXXXX"
 
     let newMember = {
       first_name: data.firstName,

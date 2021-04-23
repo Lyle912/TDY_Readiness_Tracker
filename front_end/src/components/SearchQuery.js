@@ -100,7 +100,7 @@ export default function SearchQuery() {
       </FormControl>
 
       <section name="ranks" className="rank-select">
-        <label for="ranks">Ranks:</label>
+        <label for="ranks"><strong>Ranks:</strong></label>
         <section name="enlisted" className="enlisted-ranks">
           {enlistedRankList.map((rank) => (
             <span className="rank">
@@ -142,7 +142,7 @@ export default function SearchQuery() {
         </section>
       </section>
       <section name="rentalCar" className="rental-select">
-        <label for="rental">Rental Car:</label>
+        <label for="rental"><strong>Rental Car:</strong></label>
         <input
           type="checkbox"
           id="rental"
@@ -151,7 +151,7 @@ export default function SearchQuery() {
         />
       </section>
       <section name="expirations" className="expiration-select">
-        <label for="expirations">Cannot be Expired: </label>
+        <label for="expirations"><strong>Cannot be Expired: </strong></label>
         <div className="expiration-item">
           <input
             type="checkbox"
@@ -181,7 +181,7 @@ export default function SearchQuery() {
         </div>
       </section>
       <section name="job" className="job-select">
-        <label for="job">Job Code:</label>
+        <label for="job"><strong>Job Code:</strong></label>
         <input
           type="text"
           id="job"

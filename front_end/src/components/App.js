@@ -12,7 +12,8 @@ export default function App() {
       <div className="app">
         <div className="grid-container">
           <div className="header">
-            <Route render={({ location }) =>["/"].includes(location.pathname) ? null : <Header/>}/>
+            {/* <Route render={({ location }) =>["/"].includes(location.pathname) ? null : <Header/>}/> */}
+            <Header/>
           </div>
           <div className="main">
             <Switch>
