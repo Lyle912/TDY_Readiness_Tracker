@@ -8,7 +8,7 @@ const officerRankList = [
   "O7",
   "O8",
   "O9",
-  "O10"
+  "o10"
 ];
 
 export default officerRankList

@@ -136,7 +136,7 @@ export default function SearchQuery() {
                 name={rank}
                 onChange={handleRankChange}
               />
-              <label for={rank}> {rank}</label>
+              <label for={rank}> {rank.toUpperCase()}</label>
             </span>
           ))}
         </section>

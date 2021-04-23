@@ -8,6 +8,11 @@ export default function Review({ formData, navigation }) {
     for (const [key, value] of Object.entries(data)) {
       if (value.toString() === "true") vaccineArray.push(key);
     }
+    if (!data.cac) data.cac = new Date().toISOString().slice(0, 10);
+    if (!data.gtc) data.gtc = new Date().toISOString().slice(0, 10);
+    if (!data.dl) data.dl = new Date().toISOString().slice(0, 10);
+    if(!data.rank) data.rank = "E1"
+
     let newMember = {
       first_name: data.firstName,
       last_name: data.lastName,
@@ -82,13 +87,13 @@ export default function Review({ formData, navigation }) {
 
           <div>
             <strong>CAC Expiration:</strong>{" "}
-            {` ${new Date(formData["cac"]).toISOString().slice(0, 10)}`}
+            {` ${ formData["cac"] ? new Date(formData["cac"]).toISOString().slice(0, 10) :  new Date().toISOString().slice(0, 10)}`}
             <br />
             <strong>GTC Expiration:</strong>{" "}
-            {`${new Date(formData["gtc"]).toISOString().slice(0, 10)}`}
+            {` ${ formData["gtc"] ? new Date(formData["gtc"]).toISOString().slice(0, 10) :  new Date().toISOString().slice(0, 10)}`}
             <br />
             <strong>License Expiration:</strong>{" "}
-            {`${new Date(formData["dl"]).toISOString().slice(0, 10)}`}
+            {` ${ formData["dl"] ? new Date(formData["dl"]).toISOString().slice(0, 10) :  new Date().toISOString().slice(0, 10)}`}
           </div>
         </div>
 

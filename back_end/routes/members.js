@@ -16,7 +16,8 @@ router.get("/", function (req, res, next) {
   let cac = req.query.cac === "true";
   let license = req.query.dl === "true";
   let gtc = req.query.gtc === "true";
-  let job = req.query.job;
+  let job = req.query.jobstr;
+  if (job) job = job.replace(/\\/g, '')
   if (country) {
     var getCountryId = knex
       .select("id")
