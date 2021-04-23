@@ -1,20 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Orbitron:300,400,700);
+
 .container{
     max-width: 640px;
     float: left;
     
 }
 .vac_form{
-    
     width: 100%;
     background-color: white;
-    border: 1px solid #444;
     color: #fff;
     display: block;
     font-size: 1em;
     padding: 10px 50px;
     text-transform: uppercase;
     font-weight: normal;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif 
+    font-family: 'Orbitron';
+    border: 2px solid goldenrod;
 }
 .button{
    text-transform: uppercase;
@@ -66,14 +67,16 @@
     
     width: 100%;
     background-color: white;
-    border: 1px solid #444;
+    border: 2px solid goldenrod;
     color: royalblue;
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
     font-size: 1em;
     padding: 35px 50px;
     text-transform: uppercase;
     font-weight: normal;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif
+    font-family: 'Orbitron';
 }
 .pers_list{
     font-style: italic;

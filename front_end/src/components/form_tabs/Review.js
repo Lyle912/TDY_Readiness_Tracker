@@ -45,50 +45,63 @@ export default function Review({ formData, navigation }) {
         trueVac.push(field);
       }
     }
-    return trueVac;
+    return trueVac.join(", ");
   }
 
   return (
     <div className="container">
       <h3 className="heading">Review your data</h3>
       <div className="review_form">
-        <h4>
-          Personal Information
-          <button onClick={() => go("names")}>Edit</button>
-        </h4>
-        <div className='pers_list'>
-          First name: {`${formData["firstName"]}`}
-          <br />
-          Last Name: {`${formData["lastName"]}`}
-          <br />
-          Age: {`${formData["age"]}`}
-          <br />
-          Rank: {`${formData["rank"]}`}
-          <br />
-          MOS: {`${formData["mos"]}`}
+        <div>
+          <h3>
+            <button onClick={() => go("names")}>Edit</button>
+            <u>Personal:</u>
+          </h3>
+          <div className="pers_listgr">
+            <strong>First name: </strong>
+            {`${formData["firstName"]}`}
+            <br />
+            <strong>Last Name: </strong> {`${formData["lastName"]}`}
+            <br />
+            <strong>Age: </strong>
+            {`${formData["age"]}`}
+            <br />
+            <strong>Rank: </strong>
+            {`${formData["rank"]}`}
+            <br />
+            <strong>MOS: </strong>
+            {`${formData["mos"]}`}
+          </div>
         </div>
 
-        <h4>
-          Expiraton Dates:
-          <button onClick={() => go("expiration")}>Edit</button>
-        </h4>
-
         <div>
-          CAC Expiration: {` ${new Date(formData["cac"])}`}
-          <br />
-          GTC Expiration: {`${new Date(formData["gtc"])}`}
-          <br />
-          DL Expiration: {`${new Date(formData["dl"])}`}
+          <h3>
+            <button onClick={() => go("expiration")}>Edit</button>
+            <u>Dates:</u>
+          </h3>
+
+          <div>
+            <strong>CAC Expiration:</strong>{" "}
+            {` ${new Date(formData["cac"]).toISOString().slice(0, 10)}`}
+            <br />
+            <strong>GTC Expiration:</strong>{" "}
+            {`${new Date(formData["gtc"]).toISOString().slice(0, 10)}`}
+            <br />
+            <strong>License Expiration:</strong>{" "}
+            {`${new Date(formData["dl"]).toISOString().slice(0, 10)}`}
+          </div>
         </div>
 
-        <h4>
-          Vaccines:
-          <button onClick={() => go("vaccine")}>Edit</button>
-        </h4>
-
         <div>
-          Vaccine List: {`${vaccineList()}`}
-          <br />
+          <h3>
+            <button onClick={() => go("vaccine")}>Edit</button>
+            <u>Vaccines:</u>
+          </h3>
+
+          <div>
+            {`${vaccineList()}`}
+            <br />
+          </div>
         </div>
       </div>
 

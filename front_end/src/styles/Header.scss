@@ -1,0 +1,139 @@
+
+.header-container{
+  display: grid;
+  grid-template-columns: 100px 85vw;
+  grid-template-rows: 10vh;
+}
+
+.header-logo{
+  padding-left: 50px;
+  height:100px;
+  float: left
+}
+
+
+.text {
+  background-color: black;
+  color: white;
+  font-size: 80px;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  position: relative;
+  user-select: none;
+}
+
+.text::before {
+  content: attr(data-text);
+  position: absolute;
+  color: white;
+  filter: blur(0.02em);
+  mix-blend-mode: difference;
+}
+
+.gradient {
+  position: absolute;
+  background: linear-gradient(45deg, red, gold, lightgreen, gold, red);
+  top: 0;
+  left: 14%;
+  right: 0;
+  bottom: 0;
+  mix-blend-mode: multiply;
+}
+
+.spotlight {
+  position: absolute;
+  top: -100%;
+  left: 13%;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, white, transparent 25%) center / 25% 25%,
+  radial-gradient(circle, white, black 25%) center / 12.5% 12.5%;
+  animation: light 5s linear infinite;
+  mix-blend-mode: color-dodge;
+}
+
+@keyframes light {
+  to {
+    transform: translate(50%, 50%);
+  }
+}
+
+$stars: 350; // Number of start per layer
+$depth: 300; // Depth between star layers
+$speed: 10s; // Number of seconds to transition between layers
+$width: 3000; // Width of the starfield
+$height: 960; // Height of the starfield
+
+.stars {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  $box-shadow: ();
+  @for $i from 0 through $stars {
+    $box-shadow: $box-shadow,
+    (random($width)-$width/2 + px)
+    (random($height)-$height/2 + px)
+    hsl(90, 0, 75 + random(25));
+  }
+  box-shadow: $box-shadow;
+  animation: fly $speed linear infinite;
+  transform-style: preserve-3d;
+  
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    box-shadow: inherit;
+  }
+  &:before {
+    transform: translateZ(-$depth + px);
+    animation: fade1 $speed linear infinite;
+  }
+  &:after {
+    transform: translateZ(-$depth * 2 + px);
+    animation: fade2 $speed linear infinite;
+  }
+}
+
+@keyframes fly {
+  from {
+    transform: translateZ(0px);
+  }
+  to {
+    transform: translateZ($depth + px);
+  }
+}
+
+@keyframes fade1 {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+.header {
+  margin: 0;
+  height: 15vh;
+  perspective: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  overflow: hidden;
+  filter: brightness(200%);
+}

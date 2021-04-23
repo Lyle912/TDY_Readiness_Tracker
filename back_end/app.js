@@ -6,6 +6,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var membersRouter = require('./routes/members');
 var fetchVaccinesRouter = require('./routes/fetchVaccines');
+var deleteMember = require('./routes/deleteMember');
+var updateMember = require('./routes/updateMember');
 
 var app = express();
 
@@ -18,5 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/members', membersRouter);
 app.use('/fetchVaccines', fetchVaccinesRouter);
+app.use('/deleteMember', deleteMember);
+app.use('/updateMember', updateMember);
 
 module.exports = app;

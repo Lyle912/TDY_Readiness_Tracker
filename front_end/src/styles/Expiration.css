@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Orbitron:300,400,700);
+
 .exp_container{
     max-width: 640px;
     float: left;
@@ -5,21 +7,18 @@
     
 }
 .expiration_form{
-    
     width: 100%;
     height: 12vh;
-    display: flex;
-    flex-flow: row wrap;
-    
-    background-color: white;
-    border: 1px solid #444;
     color: #fff;
-    
+    display: flex;
     font-size: 1em;
     padding: 10px 50px;
+    flex-flow: row wrap;
+    background-color: white;
+    border: 2px solid goldenrod;
     text-transform: uppercase;
     font-weight: normal;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    font-family: 'Orbitron'; 
 }
 .button{
    text-transform: uppercase;
@@ -41,14 +40,17 @@
 .exp_heading{
     color: white;
     width: 100%;
-    
+    border: 2px solid goldenrod;
     padding: 10px 50px;
     border-bottom: 2px solid #444;
     background: royalblue;
-
-}
-.exp_buttonsss{
+    font-family: 'Orbitron';
     
+}
+
+
+.exp_buttonsss{
+    text-align: left;
     margin-top: 1px;
 }
 

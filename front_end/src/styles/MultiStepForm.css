@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Orbitron:300,400,700);
+
 .container{
     max-width: 640px;
     float: left;
@@ -15,7 +17,7 @@
     padding: 10px 50px;
     text-transform: uppercase;
     font-weight: normal;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+    font-family: 'Orbitron'; 
 }
 .button{
    text-transform: uppercase;
